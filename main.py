@@ -53,8 +53,7 @@ def tabela(processos):
 
 lista_de_processos = []
 
-print('Escolha o algoritmo: Fifo[1] ou Sjf[2]')
-tipo_do_algoritmo = int(input('Digite 1 ou 2:\n'))
+print('Simulador Desempenho Escalonamento')
 
 quantidade_de_processos = int(input('Digite a quantidade de processos: '))
 
@@ -69,10 +68,13 @@ while quantidade_de_processos > 0:
     processo = Processo(nome,ordem,tempo_de_execucao)
     lista_de_processos.append(processo)
 
-if tipo_do_algoritmo == 1:
-    fifo(lista_de_processos)
-    tabela(lista_de_processos)
-elif tipo_do_algoritmo == 2:
-    sjf(lista_de_processos)
-    tabela(lista_de_processos)
+print('Algoritmo FIFO')
+fifo(lista_de_processos)
+tabela(lista_de_processos)
+
+print()
+
+print('Algoritmo SJF')
+sjf(lista_de_processos)
+tabela(lista_de_processos)
 
