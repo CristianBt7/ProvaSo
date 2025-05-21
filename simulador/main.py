@@ -1,5 +1,6 @@
 #Cristian Brandao Tavares
 #Enzo Damasceno Falcao
+#Francisco Osmar Santos Silva
 
 #Simulador Desempenho Escalonamento
 
@@ -16,6 +17,8 @@ class Processo:
         
 def fifo(processos):
     tempo_ocorrido = 0
+    processos.sort(key= lambda processo: processo.ordem)
+    
     for processo in processos:
         if processo.ordem == 1:
             processo.tempo_de_espera = 0
@@ -27,7 +30,7 @@ def fifo(processos):
             tempo_ocorrido += processo.tempo_de_execucao
 
 def sjf(processos):
-    processos.sort(key=lambda p: p.tempo_de_execucao)
+    processos.sort(key=lambda processo: processo.tempo_de_execucao)
     
     tempo_ocorrido = 0
     for processo in processos:
@@ -44,11 +47,13 @@ def tabela(processos):
     for processo in lista_de_processos:
         print(processo)
     print("-" * 70)
-    tempo_total_dos_processos = 0
-
+    tempo_total_do_turnaround = 0
+    tempo_total_de_espera = 0
     for tempo_processos in processos:
-        tempo_total_dos_processos += tempo_processos.turnaround
-    print(f'O tempo medio de turnaround: {tempo_total_dos_processos/len(processos):0.2f}')
+        tempo_total_do_turnaround += tempo_processos.turnaround
+        tempo_total_de_espera += tempo_processos.tempo_de_espera
+    print(f'O tempo medio de turnaround: {tempo_total_do_turnaround/len(processos):0.2f}')
+    print(f'O tempo medio de espera: {tempo_total_de_espera/len(processos): 0.2f}')
 
 
 lista_de_processos = []
